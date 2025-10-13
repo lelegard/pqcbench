@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-cd $(dirname "$0")
-OSSL=$(pwd)/.openssl/usr/local
-make OSSLROOT=$OSSL

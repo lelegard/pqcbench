@@ -33,7 +33,7 @@ LDFLAGS  += $(if $(DEBUG),-g)
 # Build this project: make OSSLROOT=/some/where/usr/local
 # Run the test: LD_LIBRARY_PATH=/some/where/usr/local/lib build/pqcbench
 CXXFLAGS += $(if $(OSSLROOT),-I$(OSSLROOT)/include)
-LDFLAGS  += $(if $(OSSLROOT),-L$(OSSLROOT)/lib)
+LDFLAGS  += $(if $(OSSLROOT),$(if $(wildcard $(OSSLROOT)/lib64),-L$(OSSLROOT)/lib64,-L$(OSSLROOT)/lib))
 
 # Build operations.
 exec: $(EXEC)
