@@ -1,0 +1,37 @@
+CRYPTOGRAPHIC OPERATIONS PER SECOND
+
+CPU core               Apple M1
+Frequency              3.20 GHz
+OpenSSL                   3.6.0
+------------------   ----------
+ML-KEM-512 encap     62,573 (1)
+ML-KEM-512 decap     40,355 (1)
+ML-KEM-768 encap     44,220 (1)
+ML-KEM-768 decap     28,364 (1)
+ML-KEM-1024 encap    32,298 (1)
+ML-KEM-1024 decap    21,059 (1)
+ML-DSA-44 sign        2,680 (1)
+ML-DSA-44 verify     13,381 (1)
+ML-DSA-65 sign        1,644 (1)
+ML-DSA-65 verify      8,700 (1)
+ML-DSA-87 sign        1,432 (1)
+ML-DSA-87 verify      5,521 (1)
+
+CRYPTOGRAPHIC OPERATIONS PER 1,000,000,000 PROCESSOR CYCLES
+
+CPU core               Apple M1
+Frequency              3.20 GHz
+OpenSSL                   3.6.0
+------------------   ----------
+ML-KEM-512 encap     19,554 (1)
+ML-KEM-512 decap     12,611 (1)
+ML-KEM-768 encap     13,818 (1)
+ML-KEM-768 decap      8,864 (1)
+ML-KEM-1024 encap    10,093 (1)
+ML-KEM-1024 decap     6,580 (1)
+ML-DSA-44 sign          837 (1)
+ML-DSA-44 verify      4,181 (1)
+ML-DSA-65 sign          513 (1)
+ML-DSA-65 verify      2,718 (1)
+ML-DSA-87 sign          447 (1)
+ML-DSA-87 verify      1,725 (1)
