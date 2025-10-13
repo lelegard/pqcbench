@@ -1,37 +1,37 @@
 CRYPTOGRAPHIC OPERATIONS PER SECOND
 
-CPU core               Apple M1
-Frequency              3.20 GHz
-OpenSSL                   3.6.0
-------------------   ----------
-ML-KEM-512 encap     62,573 (1)
-ML-KEM-512 decap     40,355 (1)
-ML-KEM-768 encap     44,220 (1)
-ML-KEM-768 decap     28,364 (1)
-ML-KEM-1024 encap    32,298 (1)
-ML-KEM-1024 decap    21,059 (1)
-ML-DSA-44 sign        2,680 (1)
-ML-DSA-44 verify     13,381 (1)
-ML-DSA-65 sign        1,644 (1)
-ML-DSA-65 verify      8,700 (1)
-ML-DSA-87 sign        1,432 (1)
-ML-DSA-87 verify      5,521 (1)
+CPU core             Neoverse V2     Apple M1
+Frequency               3.30 GHz     3.20 GHz
+OpenSSL                    3.6.0        3.6.0
+------------------   -----------   ----------
+ML-KEM-512 encap      94,677 (1)   62,573 (2)
+ML-KEM-512 decap      60,807 (1)   40,355 (2)
+ML-KEM-768 encap      69,693 (1)   44,220 (2)
+ML-KEM-768 decap      44,296 (1)   28,364 (2)
+ML-KEM-1024 encap     52,627 (1)   32,298 (2)
+ML-KEM-1024 decap     33,623 (1)   21,059 (2)
+ML-DSA-44 sign         2,061 (2)    2,680 (1)
+ML-DSA-44 verify      10,435 (2)   13,381 (1)
+ML-DSA-65 sign         1,271 (2)    1,644 (1)
+ML-DSA-65 verify       6,827 (2)    8,700 (1)
+ML-DSA-87 sign         1,099 (2)    1,432 (1)
+ML-DSA-87 verify       4,377 (2)    5,521 (1)
 
 CRYPTOGRAPHIC OPERATIONS PER 1,000,000,000 PROCESSOR CYCLES
 
-CPU core               Apple M1
-Frequency              3.20 GHz
-OpenSSL                   3.6.0
-------------------   ----------
-ML-KEM-512 encap     19,554 (1)
-ML-KEM-512 decap     12,611 (1)
-ML-KEM-768 encap     13,818 (1)
-ML-KEM-768 decap      8,864 (1)
-ML-KEM-1024 encap    10,093 (1)
-ML-KEM-1024 decap     6,580 (1)
-ML-DSA-44 sign          837 (1)
-ML-DSA-44 verify      4,181 (1)
-ML-DSA-65 sign          513 (1)
-ML-DSA-65 verify      2,718 (1)
-ML-DSA-87 sign          447 (1)
-ML-DSA-87 verify      1,725 (1)
+CPU core             Neoverse V2     Apple M1
+Frequency               3.30 GHz     3.20 GHz
+OpenSSL                    3.6.0        3.6.0
+------------------   -----------   ----------
+ML-KEM-512 encap      28,690 (1)   19,554 (2)
+ML-KEM-512 decap      18,426 (1)   12,611 (2)
+ML-KEM-768 encap      21,119 (1)   13,818 (2)
+ML-KEM-768 decap      13,423 (1)    8,864 (2)
+ML-KEM-1024 encap     15,947 (1)   10,093 (2)
+ML-KEM-1024 decap     10,188 (1)    6,580 (2)
+ML-DSA-44 sign           624 (2)      837 (1)
+ML-DSA-44 verify       3,162 (2)    4,181 (1)
+ML-DSA-65 sign           385 (2)      513 (1)
+ML-DSA-65 verify       2,068 (2)    2,718 (1)
+ML-DSA-87 sign           333 (2)      447 (1)
+ML-DSA-87 verify       1,326 (2)    1,725 (1)

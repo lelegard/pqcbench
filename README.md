@@ -33,3 +33,12 @@ In each table, the ranking of each CPU in the line is added between brackets.
 
 OpenSSL supports ML-KEM and ML-DSA starting with version 3.5. All tests were
 performed using version 3.6. When not available on the system, it was recompiled.
+
+To download OpenSSL sources, recompile OpenSSL 3.6, build and run the `pqcbench`
+test, run the following scripts:
+
+~~~
+./rebuild-openssl.sh
+./make-with-rebuilt-openssl.ssh
+./run-with-rebuilt-openssl.ssh
+~~~
