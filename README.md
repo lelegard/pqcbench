@@ -14,10 +14,11 @@ The tested algorithms are:
   - Sizes: 128, 192, 256
   - Variants: "s" (small), "f" (fast)
 
-Note: equivalent [aesbench](https://github.com/lelegard/aesbench),
-[shabench](https://github.com/lelegard/shabench),
-[rsabench](https://github.com/lelegard/rsabench)
-projects exist for AES, SHA hash functions, and RSA.
+Note: this project is part of a series of cryptographic benchmarks:
+- [aesbench](https://github.com/lelegard/aesbench) for AES
+- [shabench](https://github.com/lelegard/shabench) for SHA-x hash functions
+- [rsabench](https://github.com/lelegard/rsabench) for RSA
+- [pqcbench](https://github.com/lelegard/pqcbench) for PQC (ML-KEM, ML-DSA, SLH-DSA)
 
 ## Performance results
 
