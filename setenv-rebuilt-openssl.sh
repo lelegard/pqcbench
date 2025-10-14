@@ -1,5 +1,51 @@
 #!/usr/bin/env bash
+# Add/remove the paths for the rebuilt OpenSSL.
+# Option -u unsets the environment variables.
+setenv_unset=
+[[ $1 == -u ]] && setenv_unset="-r"
+
+# Add an element to a search path.
+# Syntax: pathmunge [-p varname] [-a] [-t] dirname
+# With -a: append last, -t: add trailing colon, -r: remove element instead of adding it.
+pathmunge () {
+    local dirname=
+    local varname=PATH
+    local after=false
+    local remove=false
+    local trailing=false
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -p) shift; varname="$1" ;;
+            -a) after=true ;;
+            -r) remove=true ;;
+            -t) trailing=true ;;
+            -*) echo >&2 "pathmunge: invalid option $1" ;;
+            *)  dirname="$1" ;;
+        esac
+        shift
+    done
+    if [[ -z "$varname" ]]; then
+        echo >&2 "pathmunge: empty environment variable name, $dirname not added"
+    elif [[ -z "$dirname" ]]; then
+        echo >&2 "pathmunge: empty directory not added to $varname"
+    else
+        # Remove all previous occurrences
+        local path=":${!varname}:"
+        path="${path//:$dirname:/:}"
+        # Add new element.
+        if ! $remove; then
+            $after && path="$path$dirname" || path="$dirname$path"
+        fi
+        # Cleanup path
+        while [[ "$path" == :* ]]; do path="${path/#:/}"; done
+        while [[ "$path" == *: ]]; do path="${path/%:/}"; done
+        path="${path//::/:}"
+        $trailing && path="$path:"
+        export $varname="$path"
+    fi
+}
 
 export OSSLROOT=$(cd $(dirname "$BASH_SOURCE[0]"); pwd)/.openssl/usr/local
-export PATH="$OSSLROOT/bin:$PATH"
-export LD_LIBRARY_PATH="$OSSLROOT/lib64:$OSSLROOT/lib:$LD_LIBRARY_PATH"
+pathmunge $setenv_unset "$OSSLROOT/bin"
+pathmunge $setenv_unset -p LD_LIBRARY_PATH "$OSSLROOT/lib64"
+pathmunge $setenv_unset -p LD_LIBRARY_PATH "$OSSLROOT/lib"
