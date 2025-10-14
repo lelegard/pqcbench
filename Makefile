@@ -47,6 +47,8 @@ run: $(EXEC)
 	$(EXEC)
 clean:
 	rm -rf build build-* core *.tmp *.log *.pro.user __pycache__
+distclean: clean
+	rm -rf .openssl
 
 # Regenerate implicit dependencies.
 ifneq ($(if $(MAKECMDGOALS),$(filter-out clean listvars cxxmacros,$(MAKECMDGOALS)),true),)

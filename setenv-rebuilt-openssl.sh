@@ -1,8 +1,6 @@
-#!/usr/bin/env bash
 # Add/remove the paths for the rebuilt OpenSSL.
 # Option -u unsets the environment variables.
-setenv_unset=
-[[ $1 == -u ]] && setenv_unset="-r"
+[[ $1 == -u ]] && setenv_unset="-r" || setenv_unset=
 
 # Add an element to a search path.
 # Syntax: pathmunge [-p varname] [-a] [-t] dirname
@@ -47,5 +45,8 @@ pathmunge () {
 
 export OSSLROOT=$(cd $(dirname "$BASH_SOURCE[0]"); pwd)/.openssl/usr/local
 pathmunge $setenv_unset "$OSSLROOT/bin"
-pathmunge $setenv_unset -p LD_LIBRARY_PATH "$OSSLROOT/lib64"
-pathmunge $setenv_unset -p LD_LIBRARY_PATH "$OSSLROOT/lib"
+if [[ -d "$OSSLROOT/lib64" ]]; then
+    pathmunge $setenv_unset -p LD_LIBRARY_PATH "$OSSLROOT/lib64"
+else
+    pathmunge $setenv_unset -p LD_LIBRARY_PATH "$OSSLROOT/lib"
+fi

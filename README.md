@@ -43,3 +43,7 @@ source setenv-rebuilt-openssl.sh
 make
 build/pqcbench
 ~~~
+
+The script `setenv-rebuilt-openssl.sh` is not executable. It must be source'd from
+the calling shell. It sets (or unsets with option `-u`) the environment variables
+`PATH` and `LD_LIBRARY_PATH` with the directories of the rebuilt OpenSSL.
