@@ -22,7 +22,7 @@
 
 constexpr int64_t USECPERSEC = 1000000;  // microseconds per second
 constexpr int64_t MIN_CPU_TIME = 3 * USECPERSEC;
-constexpr size_t  INNER_LOOP_COUNT = 50;
+constexpr size_t  INNER_LOOP_COUNT = 10;
 
 
 //----------------------------------------------------------------------------
@@ -354,6 +354,8 @@ int main(int argc, char* argv[])
     one_test_dsa("mldsa-44");
     one_test_dsa("mldsa-65");
     one_test_dsa("mldsa-87");
+    one_test_dsa("slhdsa-sha2-128f");
+    one_test_dsa("slhdsa-sha2-128s");
     one_test_dsa("slhdsa-sha2-192f");
     one_test_dsa("slhdsa-sha2-192s");
     one_test_dsa("slhdsa-sha2-256f");
