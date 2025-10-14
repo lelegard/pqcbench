@@ -1,12 +1,18 @@
-# ML-KEM and ML-DSA Benchmarks
+# Post-Quantum Cryptography Benchmarks
 
-This project runs ML-KEM (CRYSTALS-Kyber) and ML-DSA (CRYSTALS-Dilithium) tests
-on various CPU's using the OpenSSL cryptographic library.
+This project runs PQC algorithms tests on various CPU's using the OpenSSL
+cryptographic library.
 
-The tested algorithms are ML-KEM-512, ML-KEM-768, ML-KEM-1024 (key encapsulation)
-and ML-DSA-44, ML-DSA-65, ML-DSA-87 (signature).
+The tested algorithms are:
 
-The ML-KEM and ML-DSA keys were generated using the script `genkeys.sh`.
+- ML-KEM, Module-Lattice-Based Key Encapsulation Mechanism, aka CRYSTALS-Kyber
+  - Sizes: 512, 768, 1024
+- ML-DSA, Module-Lattice-Based Digital Signature Algorithm, aka CRYSTALS-Dilithium
+  - Security levels: 44, 65, 87
+- SLH-DSA, Stateless Hash-Based Digital Signature Algorithm, aka SPHINCS+
+  - Associated hash: SHA-2, SHAKE
+  - Sizes: 128, 192, 256
+  - Variants: "s" (small), "f" (fast)
 
 Note: equivalent [aesbench](https://github.com/lelegard/aesbench),
 [shabench](https://github.com/lelegard/shabench),
@@ -29,13 +35,26 @@ Two tables are provided:
 
 In each table, the ranking of each CPU in the line is added between brackets.
 
+## Key pairs generation
+
+The key pairs in the subdirectory `keys` of this repository are used to run the
+tests. The same keys are used on all platforms. These keys were generated using
+the script `genkeys.sh`.
+
+To view the content of a private or public key file, use the following commands:
+
+~~~
+openssl pkey -in keys/ALGO-prv.pem -text
+openssl pkey -in keys/ALGO-pub.pem -pubin -text
+~~~
+
 ## OpenSSL support
 
-OpenSSL supports ML-KEM and ML-DSA starting with version 3.5. All tests were
-performed using version 3.6. When not available on the system, it was recompiled.
+OpenSSL supports ML-KEM, ML-DSA, and SLH-DSA starting with version 3.5. All tests
+were performed using version 3.6. When not available on the system, it was recompiled.
 
-To download OpenSSL sources, recompile OpenSSL 3.6, build and run the `pqcbench`
-test, run the following commands:
+To download OpenSSL sources, recompile OpenSSL 3.6, build and run the `pqcbench` test,
+run the following commands:
 
 ~~~
 ./rebuild-openssl.sh

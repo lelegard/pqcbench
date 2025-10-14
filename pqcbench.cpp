@@ -21,7 +21,7 @@
 #endif
 
 constexpr int64_t USECPERSEC = 1000000;  // microseconds per second
-constexpr int64_t MIN_CPU_TIME = 2 * USECPERSEC;
+constexpr int64_t MIN_CPU_TIME = 3 * USECPERSEC;
 constexpr size_t  INNER_LOOP_COUNT = 50;
 
 
@@ -117,7 +117,7 @@ std::string keys_directory()
 
 EVP_PKEY* load_key(const char* filename, bool is_public)
 {
-    const std::string path(keys_directory() + "/" + filename);
+    const std::string path(keys_directory() + "/" + filename + (is_public ? "-pub.pem" : "-prv.pem"));
 
     std::FILE* fp = nullptr;
     if ((fp = std::fopen(path.c_str(), "r")) == nullptr) {
@@ -154,11 +154,11 @@ void print_result(const char* name, uint64_t count, uint64_t duration)
 // Perform one ML-KEM test.
 //----------------------------------------------------------------------------
 
-void one_test_kem(const char* private_key_file, const char* public_key_file)
+void one_test_kem(const char* key_file)
 {
     // Load private and public keys.
-    EVP_PKEY* kpriv = load_key(private_key_file, false);
-    EVP_PKEY* kpub = load_key(public_key_file, true);
+    EVP_PKEY* kpriv = load_key(key_file, false);
+    EVP_PKEY* kpub = load_key(key_file, true);
 
     const size_t data_size = EVP_PKEY_get_size(kpriv);
     std::cout << "algo: " << EVP_PKEY_get0_type_name(kpriv) << std::endl;
@@ -246,11 +246,11 @@ void one_test_kem(const char* private_key_file, const char* public_key_file)
 // Perform one ML-DSA test.
 //----------------------------------------------------------------------------
 
-void one_test_dsa(const char* private_key_file, const char* public_key_file)
+void one_test_dsa(const char* key_file)
 {
     // Load private and public keys.
-    EVP_PKEY* kpriv = load_key(private_key_file, false);
-    EVP_PKEY* kpub = load_key(public_key_file, true);
+    EVP_PKEY* kpriv = load_key(key_file, false);
+    EVP_PKEY* kpub = load_key(key_file, true);
 
     const size_t data_size = EVP_PKEY_get_size(kpriv);
     std::cout << "algo: " << EVP_PKEY_get0_type_name(kpriv) << std::endl;
@@ -348,12 +348,22 @@ int main(int argc, char* argv[])
     print_openssl_version();
 
     // Run tests.
-    one_test_kem("mlkem-512-prv.pem", "mlkem-512-pub.pem");
-    one_test_kem("mlkem-768-prv.pem", "mlkem-768-pub.pem");
-    one_test_kem("mlkem-1024-prv.pem", "mlkem-1024-pub.pem");
-    one_test_dsa("mldsa-44-prv.pem", "mldsa-44-pub.pem");
-    one_test_dsa("mldsa-65-prv.pem", "mldsa-65-pub.pem");
-    one_test_dsa("mldsa-87-prv.pem", "mldsa-87-pub.pem");
+    one_test_kem("mlkem-512");
+    one_test_kem("mlkem-768");
+    one_test_kem("mlkem-1024");
+    one_test_dsa("mldsa-44");
+    one_test_dsa("mldsa-65");
+    one_test_dsa("mldsa-87");
+    one_test_dsa("slhdsa-sha2-192f");
+    one_test_dsa("slhdsa-sha2-192s");
+    one_test_dsa("slhdsa-sha2-256f");
+    one_test_dsa("slhdsa-sha2-256s");
+    one_test_dsa("slhdsa-shake-128f");
+    one_test_dsa("slhdsa-shake-128s");
+    one_test_dsa("slhdsa-shake-192f");
+    one_test_dsa("slhdsa-shake-192s");
+    one_test_dsa("slhdsa-shake-256f");
+    one_test_dsa("slhdsa-shake-256s");
 
     // OpenSSL cleanup.
     EVP_cleanup();
