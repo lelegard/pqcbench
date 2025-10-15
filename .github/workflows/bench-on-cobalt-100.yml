@@ -1,0 +1,27 @@
+name: Bench on Cobalt 100
+on:
+  workflow_dispatch:
+jobs:
+  bench:
+    name: Run benchmarks
+    runs-on: ubuntu-24.04-arm
+    steps:
+    - name: Get repository
+      uses: actions/checkout@master
+    - name: Show cpuinfo
+      run: cat /proc/cpuinfo
+    - name: Run lscpu
+      run: lscpu
+    - name: Build OpenSSL 3.6
+      run: ./rebuild-openssl.sh
+    - name: Run benchmarks
+      run: |
+        source setenv-rebuilt-openssl.sh
+        make
+        build/pqcbench >results/arm-cobalt100-neoverse-n2-linux.txt
+    - name: Upload results
+      uses: actions/upload-artifact@v4
+      with:
+        name: results
+        path: results/arm-cobalt100-neoverse-n2-linux.txt
+        retention-days: 90
