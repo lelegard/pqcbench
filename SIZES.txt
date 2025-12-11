@@ -1,20 +1,23 @@
-SIZE IN BYTES OF WRAPPED KEYS AND SIGNATURES
+SIZE OF KEYS, WRAPPED KEYS AND SIGNATURES
 
-ML-KEM-512              768
-ML-KEM-768            1,088
-ML-KEM-1024           1,568
-ML-DSA-44             2,420
-ML-DSA-65             3,309
-ML-DSA-87             4,627
-SLH-DSA-SHA2-128f    17,088
-SLH-DSA-SHA2-128s     7,856
-SLH-DSA-SHA2-192f    35,664
-SLH-DSA-SHA2-192s    16,224
-SLH-DSA-SHA2-256f    49,856
-SLH-DSA-SHA2-256s    29,792
-SLH-DSA-SHAKE-128f   17,088
-SLH-DSA-SHAKE-128s    7,856
-SLH-DSA-SHAKE-192f   35,664
-SLH-DSA-SHAKE-192s   16,224
-SLH-DSA-SHAKE-256f   49,856
-SLH-DSA-SHAKE-256s   29,792
+                     Private    Private    Public     Public  EKey/Sig  EKey/Sig
+Algorithm           key bits  key bytes  key bits  key bytes      bits     bytes
+------------------  --------  ---------  --------  ---------  --------  --------
+ML-KEM-512            13,056      1,632     6,400        800     6,144       768
+ML-KEM-768            19,200      2,400     9,472      1,184     8,704     1,088
+ML-KEM-1024           25,344      3,168    12,544      1,568    12,544     1,568
+ML-DSA-44             20,480      2,560    10,496      1,312    19,360     2,420
+ML-DSA-65             32,256      4,032    15,616      1,952    26,472     3,309
+ML-DSA-87             39,168      4,896    20,736      2,592    37,016     4,627
+SLH-DSA-SHA2-128f        512         64       256         32   136,704    17,088
+SLH-DSA-SHA2-128s        512         64       256         32    62,848     7,856
+SLH-DSA-SHA2-192f        768         96       384         48   285,312    35,664
+SLH-DSA-SHA2-192s        768         96       384         48   129,792    16,224
+SLH-DSA-SHA2-256f      1,024        128       512         64   398,848    49,856
+SLH-DSA-SHA2-256s      1,024        128       512         64   238,336    29,792
+SLH-DSA-SHAKE-128f       512         64       256         32   136,704    17,088
+SLH-DSA-SHAKE-128s       512         64       256         32    62,848     7,856
+SLH-DSA-SHAKE-192f       768         96       384         48   285,312    35,664
+SLH-DSA-SHAKE-192s       768         96       384         48   129,792    16,224
+SLH-DSA-SHAKE-256f     1,024        128       512         64   398,848    49,856
+SLH-DSA-SHAKE-256s     1,024        128       512         64   238,336    29,792
