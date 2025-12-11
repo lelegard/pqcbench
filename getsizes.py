@@ -72,37 +72,38 @@ for typ in ['data', 'priv', 'pub']:
 
 # Headers and width.
 headers = {
-    'name': ['', 'Algorithm'],
-    'data_bytes': ['EKey/Sig', 'bytes'],
-    'data_bits': ['EKey/Sig', 'bits'],
-    'priv_bytes': ['Private', 'key bytes'],
-    'priv_bits': ['Private', 'key bits'],
-    'pub_bytes': ['Public', 'key bytes'],
-    'pub_bits': ['Public', 'key bits']
+    'name': ['', '', 'Algorithm'],
+    'data_bytes': ['Wrapped key', '/ signature', 'bytes'],
+    'data_bits': ['Wrapped key', '/ signature', 'bits'],
+    'priv_bytes': ['Private', 'key', 'bytes'],
+    'priv_bits': ['Private', 'key', 'bits'],
+    'pub_bytes': ['Public', 'key', 'bytes'],
+    'pub_bits': ['Public', 'key', 'bits']
 }
 display_order = ['priv_bits', 'priv_bytes', 'pub_bits', 'pub_bytes', 'data_bits', 'data_bytes']
+separator = '   '
 widths = dict()
 for n in headers:
     widths[n] = max(max([len(h) for h in headers[n]]), max([len(sizes[algo][n]) for algo in sizes]))
 
 # Format the table in SIZES.txt.
 with open(rootdir + '/SIZES.txt', 'w') as output:
-    print('SIZE OF KEYS, WRAPPED KEYS AND SIGNATURES', file=output)
+    print('SIZE OF KEYS, WRAPPED KEYS, AND SIGNATURES', file=output)
     print('', file=output)
     # Print header text lines.
     for li in range(len(headers['name'])):
         line = '%-*s' % (widths['name'], headers['name'][li])
         for typ in display_order:
-            line += '  %*s' % (widths[typ], headers[typ][li])
+            line += '%s%*s' % (separator, widths[typ], headers[typ][li])
         print(line, file=output)
     # Print header underlines.
     line = widths['name'] * '-'
     for typ in display_order:
-        line += '  ' + widths[typ] * '-'
+        line += separator + widths[typ] * '-'
     print(line, file=output)
     # Print data.
     for siz in sizes.values():
         line = '%-*s' % (widths['name'], siz['name'])
         for typ in display_order:
-            line += '  %*s' % (widths[typ], siz[typ])
+            line += '%s%*s' % (separator, widths[typ], siz[typ])
         print(line, file=output)
